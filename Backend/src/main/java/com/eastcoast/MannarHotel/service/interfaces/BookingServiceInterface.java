@@ -7,7 +7,7 @@ import com.eastcoast.MannarHotel.entity.Booking;
 public interface BookingServiceInterface {
 
 
-    Response saveBooking(BookingRequest bookingRequest);
+    Response saveBooking(BookingRequest bookingRequest,Long roomId,Long userId);
 
     Response findBookingByConfirmationCode(String confirmationCode);
 

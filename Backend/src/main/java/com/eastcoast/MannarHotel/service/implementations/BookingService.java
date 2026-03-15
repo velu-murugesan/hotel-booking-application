@@ -25,7 +25,7 @@ public class BookingService implements BookingServiceInterface {
     private final UserRepository userRepository;
 
     @Override
-    public Response saveBooking(BookingRequest bookingRequest) {
+    public Response saveBooking(BookingRequest bookingRequest,Long roomId,Long userId) {
 
         Response response = new Response();
 
@@ -35,8 +35,8 @@ public class BookingService implements BookingServiceInterface {
                 throw new IllegalArgumentException("Check in date must come before check out date");
             }
 
-            Room room = roomRepository.findById(bookingRequest.getRoomId()).orElseThrow(() -> new OurException("Room Not Found"));
-            Users user = userRepository.findById(bookingRequest.getUserId()).orElseThrow(() -> new OurException("User Not Found"));
+            Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
+            Users user = userRepository.findById(userId).orElseThrow(() -> new OurException("User Not Found"));
 
             List<Booking> existingBookings = room.getBookings();
 
